@@ -186,7 +186,7 @@ EMAIL_HOST_PASSWORD = '8f8ba530707335'
 EMAIL_PORT = '2525'
 
 
-#  All Auth Configurations
+#  All Auth Configurations 
 
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "account_login"
