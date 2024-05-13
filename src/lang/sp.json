@@ -209,5 +209,10 @@
     "t-level-2.1":"Nivel 2.1",
     "t-level-2.2":"Nivel 2.2",
     "t-level-3.1":"Nivel 3.1",
-    "t-level-3.2":"Nivel 3.2"
+    "t-level-3.2":"Nivel 3.2",
+    "t-users-roles":"Usuarios y Roles",
+    "t-services":"Servicios",
+    "t-schedule": "Agendamiento",
+    "t-integrations": "Integraciones",
+    "t-schedule-operation": "Horario de Operacion"
 }

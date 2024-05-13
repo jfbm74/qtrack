@@ -44,6 +44,11 @@ urlpatterns = [
     ),
     # All Auth 
     path('account/', include('allauth.urls')),
+    
+    # Local Apps
+    # Config
+    path('company/', include('company.urls')),
+    path('userext/', include('userext.urls')),
 ]
 
 if settings.DEBUG:
