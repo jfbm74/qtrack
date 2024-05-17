@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Company, Branch, ServiceArea
+from .models import Company, Branch, ServiceArea, Module
 from django.urls import reverse
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
-from .forms import BranchForm, ServiceAreaForm
+from .forms import BranchForm, ModuleForm, ServiceAreaForm
 from django.views import View
 
 
@@ -123,3 +123,22 @@ def add_servicearea(request):
     else:
         form = ServiceAreaForm()
     return render(request, 'config/services/services-index.html', {'form': form})
+
+
+
+def list_modules(request):
+    modules = Module.objects.all()  # Recupera todos los módulos de la base de datos
+    branches = Branch.objects.all() 
+    return render(request, 'config/company/modules-index.html', {'modules': modules, 'branches': branches})
+
+
+def add_module(request):
+    if request.method == 'POST':
+        form = ModuleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list-modules')  # Asegúrate de tener esta URL definida para listar los módulos
+    else:
+        form = ModuleForm()
+        branches = Branch.objects.all()  # Obtener todas las sucursales para el dropdown
+    return render(request, 'config/company/modules-index.html', {'form': form, 'branches': branches})

@@ -49,6 +49,7 @@ urlpatterns = [
     # Config
     path('company/', include('company.urls')),
     path('userext/', include('userext.urls')),
+    path('ticket/', include('ticket.urls')),
 ]
 
 if settings.DEBUG:

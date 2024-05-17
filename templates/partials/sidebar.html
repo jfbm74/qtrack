@@ -57,7 +57,7 @@
                                                     <a href="{% url 'list-services' %}" class="nav-link" data-key="t-services">Servicios</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="" class="nav-link" data-key="t-schedule-operation"> Módulos de Servicio </a>
+                                                    <a href="{%  url 'list-modules' %}" class="nav-link" data-key="t-schedule-operation"> Módulos de Servicio </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -75,6 +75,24 @@
                                     </li>
                                 </ul>
 
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarTickets" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                                aria-controls="sidebarTickets">
+                                <i class="ri-contacts-book-line"></i> <span data-key="t-tickets">Tickets</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarTickets">
+                                <ul class="nav nav-sm flex-column">                        
+                                    <li class="nav-item">
+                                        <a href="{% url 'ticket-create'  %}" class="nav-link" data-key="t-users-roles">Crear</a>
+                                    </li>
+                        
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link" data-key="t-schedule">Listar</a>
+                                    </li>
+                                </ul>
+                        
                             </div>
                         </li>
                         <li class="nav-item">

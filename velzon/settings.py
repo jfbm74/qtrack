@@ -47,7 +47,8 @@ LOCAL_APPS = [
     "components",
     "pages",
     "company",
-    'userext'
+    'userext',
+    'ticket'
     ]
 THIRDPARTY_APPS = [
     # Crispy Forms

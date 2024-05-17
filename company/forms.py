@@ -1,5 +1,5 @@
 from django import forms
-from .models import Branch, ServiceArea
+from .models import Branch, ServiceArea, Module
 
 class BranchForm(forms.ModelForm):
     class Meta:
@@ -20,3 +20,19 @@ class ServiceAreaForm(forms.ModelForm):
     class Meta:
         model = ServiceArea
         fields = ['branch', 'name', 'description', 'service_letter', 'is_active', 'desks', 'waiting_time_sla', 'serving_time_sla', 'duration']
+        
+
+class ModuleForm(forms.ModelForm):
+    class Meta:
+        model = Module
+        fields = ['branch', 'name', 'description', 'is_active']
+        widgets = {
+            'branch': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Seleccione sucursal'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del módulo'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción'}),
+            'is_active': forms.Select(choices=[(True, 'Sí'), (False, 'No')], attrs={'class': 'form-control'}),
+        }
+
+
+class BranchSelectForm(forms.Form):
+    branch = forms.ModelChoiceField(queryset=Branch.objects.all(), label="Select Branch", empty_label="Choose...")

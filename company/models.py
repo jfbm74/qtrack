@@ -1,5 +1,7 @@
 # company/models.py
 from django.db import models
+from django.db.models import JSONField  
+
 # Create your models here.
 
 class Company(models.Model):
@@ -44,6 +46,10 @@ class Module(models.Model):
     def __str__(self):
         return f"{self.name} - {self.branch.name}"
 
+
+
+    
+
 class ServiceArea(models.Model):
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, related_name='service_areas', verbose_name="Branch")
     name = models.CharField(max_length=255, verbose_name="Service Name")
@@ -54,6 +60,30 @@ class ServiceArea(models.Model):
     waiting_time_sla = models.IntegerField(default=0, verbose_name="Waiting Time SLA (min)", help_text="Service Level Agreement for waiting time in minutes")
     serving_time_sla = models.IntegerField(default=0, verbose_name="Serving Time SLA (min)", help_text="Service Level Agreement for serving time in minutes")
     duration = models.IntegerField(default=0, verbose_name="Service Duration (min)", help_text="Estimated duration of the service in minutes")
+    config_type = models.IntegerField(choices=((1, "Sin datos del usuario"), (2, "Con datos del usuario")))
 
     def __str__(self):
         return f"{self.name} ({self.service_letter})"
+
+
+
+class FieldConfiguration(models.Model):
+    service_area = models.ForeignKey(ServiceArea, related_name='fields', on_delete=models.CASCADE)
+    field_type = models.CharField(max_length=50, choices=(
+        ('text', 'Texto'),
+        ('number', 'Número'),
+        ('email', 'Email'),
+        ('phone', 'Teléfono'),
+        ('date', 'Fecha'),
+        ('radio', 'Selección Única'),
+        ('dropdown', 'Desplegable'),
+        ('multiselect', 'Selección Múltiple')
+    ))
+    field_name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    placeholder = models.CharField(max_length=100, blank=True)
+    required = models.BooleanField(default=False)
+    extra_options = JSONField(blank=True, null=True)  # For storing additional settings like min/max date, options for radio buttons, etc.
+
+    def __str__(self):
+        return f"{self.field_name} ({self.service_area.name})"

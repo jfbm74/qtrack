@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import list_branches, AddBranchView, list_services, add_servicearea
+from .views import list_branches, AddBranchView, list_services, add_servicearea,list_modules, add_module
 
 urlpatterns = [
     path('', views.company_list, name='company-list'),
@@ -11,4 +11,6 @@ urlpatterns = [
     path('add-branch/', AddBranchView.as_view(), name='add-branch'),
     path('services/', list_services, name='list-services'),
     path('add-service/', add_servicearea, name='add-service-area'),
+    path('modules/', list_modules, name='list-modules'),
+    path('add-module/', add_module, name='add-module'),
 ]
